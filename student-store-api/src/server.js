@@ -3,6 +3,8 @@ const app = express();
 const PORT = 3000;
 const product = require("./routes/product.js");
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("hello world 3");
 });
