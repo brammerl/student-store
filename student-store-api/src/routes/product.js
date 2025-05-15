@@ -47,4 +47,19 @@ router.put("/:id", async (req, res) => {
   res.json(updatedProduct);
 });
 
+// Create product generic allows for multiple entries
+router.post("/", async (req, res) => {
+  const { data } = req.body;
+
+  if (!data.length) {
+    return res.status(400).json({ error: "No products provided" });
+  }
+
+  const productsCreated = await prisma.product.createManyAndReturn({
+    data,
+  });
+
+  res.json(productsCreated);
+});
+
 module.exports = router;
