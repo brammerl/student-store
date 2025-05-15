@@ -884,13 +884,11 @@ export namespace Prisma {
   export type ProductAvgAggregateOutputType = {
     id: number | null
     price: Decimal | null
-    categoryId: number | null
   }
 
   export type ProductSumAggregateOutputType = {
     id: number | null
     price: Decimal | null
-    categoryId: number | null
   }
 
   export type ProductMinAggregateOutputType = {
@@ -899,7 +897,6 @@ export namespace Prisma {
     description: string | null
     price: Decimal | null
     image_url: string | null
-    categoryId: number | null
     category: string | null
   }
 
@@ -909,7 +906,6 @@ export namespace Prisma {
     description: string | null
     price: Decimal | null
     image_url: string | null
-    categoryId: number | null
     category: string | null
   }
 
@@ -919,7 +915,6 @@ export namespace Prisma {
     description: number
     price: number
     image_url: number
-    categoryId: number
     category: number
     _all: number
   }
@@ -928,13 +923,11 @@ export namespace Prisma {
   export type ProductAvgAggregateInputType = {
     id?: true
     price?: true
-    categoryId?: true
   }
 
   export type ProductSumAggregateInputType = {
     id?: true
     price?: true
-    categoryId?: true
   }
 
   export type ProductMinAggregateInputType = {
@@ -943,7 +936,6 @@ export namespace Prisma {
     description?: true
     price?: true
     image_url?: true
-    categoryId?: true
     category?: true
   }
 
@@ -953,7 +945,6 @@ export namespace Prisma {
     description?: true
     price?: true
     image_url?: true
-    categoryId?: true
     category?: true
   }
 
@@ -963,7 +954,6 @@ export namespace Prisma {
     description?: true
     price?: true
     image_url?: true
-    categoryId?: true
     category?: true
     _all?: true
   }
@@ -1060,7 +1050,6 @@ export namespace Prisma {
     description: string
     price: Decimal
     image_url: string
-    categoryId: number
     category: string
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
@@ -1089,7 +1078,6 @@ export namespace Prisma {
     description?: boolean
     price?: boolean
     image_url?: boolean
-    categoryId?: boolean
     category?: boolean
   }, ExtArgs["result"]["product"]>
 
@@ -1099,7 +1087,6 @@ export namespace Prisma {
     description?: boolean
     price?: boolean
     image_url?: boolean
-    categoryId?: boolean
     category?: boolean
   }, ExtArgs["result"]["product"]>
 
@@ -1109,7 +1096,6 @@ export namespace Prisma {
     description?: boolean
     price?: boolean
     image_url?: boolean
-    categoryId?: boolean
     category?: boolean
   }, ExtArgs["result"]["product"]>
 
@@ -1119,11 +1105,10 @@ export namespace Prisma {
     description?: boolean
     price?: boolean
     image_url?: boolean
-    categoryId?: boolean
     category?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "price" | "image_url" | "categoryId" | "category", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "price" | "image_url" | "category", ExtArgs["result"]["product"]>
 
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Product"
@@ -1134,7 +1119,6 @@ export namespace Prisma {
       description: string
       price: Prisma.Decimal
       image_url: string
-      categoryId: number
       category: string
     }, ExtArgs["result"]["product"]>
     composites: {}
@@ -1564,7 +1548,6 @@ export namespace Prisma {
     readonly description: FieldRef<"Product", 'String'>
     readonly price: FieldRef<"Product", 'Decimal'>
     readonly image_url: FieldRef<"Product", 'String'>
-    readonly categoryId: FieldRef<"Product", 'Int'>
     readonly category: FieldRef<"Product", 'String'>
   }
     
@@ -1952,7 +1935,6 @@ export namespace Prisma {
     description: 'description',
     price: 'price',
     image_url: 'image_url',
-    categoryId: 'categoryId',
     category: 'category'
   };
 
@@ -2048,7 +2030,6 @@ export namespace Prisma {
     description?: StringFilter<"Product"> | string
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     image_url?: StringFilter<"Product"> | string
-    categoryId?: IntFilter<"Product"> | number
     category?: StringFilter<"Product"> | string
   }
 
@@ -2058,7 +2039,6 @@ export namespace Prisma {
     description?: SortOrder
     price?: SortOrder
     image_url?: SortOrder
-    categoryId?: SortOrder
     category?: SortOrder
   }
 
@@ -2071,7 +2051,6 @@ export namespace Prisma {
     description?: StringFilter<"Product"> | string
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     image_url?: StringFilter<"Product"> | string
-    categoryId?: IntFilter<"Product"> | number
     category?: StringFilter<"Product"> | string
   }, "id">
 
@@ -2081,7 +2060,6 @@ export namespace Prisma {
     description?: SortOrder
     price?: SortOrder
     image_url?: SortOrder
-    categoryId?: SortOrder
     category?: SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
@@ -2099,7 +2077,6 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"Product"> | string
     price?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     image_url?: StringWithAggregatesFilter<"Product"> | string
-    categoryId?: IntWithAggregatesFilter<"Product"> | number
     category?: StringWithAggregatesFilter<"Product"> | string
   }
 
@@ -2108,7 +2085,6 @@ export namespace Prisma {
     description: string
     price: Decimal | DecimalJsLike | number | string
     image_url: string
-    categoryId: number
     category: string
   }
 
@@ -2118,7 +2094,6 @@ export namespace Prisma {
     description: string
     price: Decimal | DecimalJsLike | number | string
     image_url: string
-    categoryId: number
     category: string
   }
 
@@ -2127,7 +2102,6 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: StringFieldUpdateOperationsInput | string
-    categoryId?: IntFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
   }
 
@@ -2137,7 +2111,6 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: StringFieldUpdateOperationsInput | string
-    categoryId?: IntFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
   }
 
@@ -2147,7 +2120,6 @@ export namespace Prisma {
     description: string
     price: Decimal | DecimalJsLike | number | string
     image_url: string
-    categoryId: number
     category: string
   }
 
@@ -2156,7 +2128,6 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: StringFieldUpdateOperationsInput | string
-    categoryId?: IntFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
   }
 
@@ -2166,7 +2137,6 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: StringFieldUpdateOperationsInput | string
-    categoryId?: IntFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
   }
 
@@ -2213,14 +2183,12 @@ export namespace Prisma {
     description?: SortOrder
     price?: SortOrder
     image_url?: SortOrder
-    categoryId?: SortOrder
     category?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
     id?: SortOrder
     price?: SortOrder
-    categoryId?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
@@ -2229,7 +2197,6 @@ export namespace Prisma {
     description?: SortOrder
     price?: SortOrder
     image_url?: SortOrder
-    categoryId?: SortOrder
     category?: SortOrder
   }
 
@@ -2239,14 +2206,12 @@ export namespace Prisma {
     description?: SortOrder
     price?: SortOrder
     image_url?: SortOrder
-    categoryId?: SortOrder
     category?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
     id?: SortOrder
     price?: SortOrder
-    categoryId?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
