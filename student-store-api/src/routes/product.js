@@ -20,4 +20,31 @@ router.delete("/:id", async (req, res) => {
   res.json(deletedProduct);
 });
 
+// Update by ID
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const fetchedProduct = await prisma.product.findUnique({
+    where: {
+      id: parseInt(id),
+    },
+  });
+
+  if (!fetchedProduct) {
+    return res.status(404).json({ error: "No product found" });
+  }
+
+  const { data } = req.body;
+
+  const updatedProduct = await prisma.product.update({
+    where: { id: parseInt(id) },
+    data: {
+      ...fetchedProduct,
+      ...data,
+    },
+  });
+
+  res.json(updatedProduct);
+});
+
 module.exports = router;
