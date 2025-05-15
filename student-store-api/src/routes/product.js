@@ -4,8 +4,19 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 // Get all product
-router.get("/", async (_, res) => {
+router.get("/", async (req, res) => {
   const products = await prisma.product.findMany();
+  const queryParams = req.query;
+
+  if (Object.keys(queryParams) !== 0) {
+    const { category } = queryParams;
+
+    const filteredProducts = products.filter(
+      (product) => product.category == category
+    );
+
+    return res.json(filteredProducts);
+  }
 
   res.json(products);
 });
