@@ -1,16 +1,20 @@
 const prisma = require("../db/db.js");
 const { createFilterAndSortObj } = require("../helpers/helpers.js");
 
-const getProducts = async (req, res) => {
-  const queryParams = req.query;
+const getProducts = async (req, res, next) => {
+  try {
+    const queryParams = req.query;
 
-  const filters = createFilterAndSortObj(queryParams);
+    const filters = createFilterAndSortObj(queryParams);
 
-  const products = await prisma.product.findMany({
-    ...filters,
-  });
+    const products = await prisma.product.findMany({
+      ...filters,
+    });
 
-  res.json(products);
+    res.json(products);
+  } catch (e) {
+    next(e);
+  }
 };
 
 const deleteProductById = async (req, res) => {
@@ -22,44 +26,48 @@ const deleteProductById = async (req, res) => {
   res.json(deletedProduct);
 };
 
-const updateProductById = async (req, res) => {
+const updateProductById = async (req, res, next) => {
   const { id } = req.params;
 
-  const fetchedProduct = await prisma.product.findUnique({
-    where: {
-      id: parseInt(id),
-    },
-  });
+  try {
+    const fetchedProduct = await prisma.product.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
 
-  if (!fetchedProduct) {
-    return res.status(404).json({ error: "No product found" });
+    const { data } = req.body;
+
+    const updatedProduct = await prisma.product.update({
+      where: { id: parseInt(id) },
+      data: {
+        ...fetchedProduct,
+        ...data,
+      },
+    });
+
+    res.json(updatedProduct);
+  } catch (e) {
+    next(e);
   }
-
-  const { data } = req.body;
-
-  const updatedProduct = await prisma.product.update({
-    where: { id: parseInt(id) },
-    data: {
-      ...fetchedProduct,
-      ...data,
-    },
-  });
-
-  res.json(updatedProduct);
 };
 
-const createProduct = async (req, res) => {
-  const { data } = req.body;
+const createProduct = async (req, res, next) => {
+  try {
+    const { data } = req.body;
 
-  if (!data.length) {
-    return res.status(400).json({ error: "No products provided" });
+    if (!data.length) {
+      return res.status(400).json({ error: "No products provided" });
+    }
+
+    const productsCreated = await prisma.product.createManyAndReturn({
+      data,
+    });
+
+    res.json(productsCreated);
+  } catch (e) {
+    next(e);
   }
-
-  const productsCreated = await prisma.product.createManyAndReturn({
-    data,
-  });
-
-  res.json(productsCreated);
 };
 
 module.exports = {
