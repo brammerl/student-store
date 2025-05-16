@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 const product = require("./routes/product.js");
+const order = require("./routes/order.js");
 const { Prisma } = require("@prisma/client");
 
 app.use(express.json());
@@ -21,11 +22,8 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Internal Server Error" });
 });
 
-app.get("/", (req, res) => {
-  res.send("hello world 3");
-});
-
 app.use("/product", product);
+app.use("/order", order);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
