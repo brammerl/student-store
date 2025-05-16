@@ -108,6 +108,29 @@ const addOrderItems = async (req, res, next) => {
   }
 };
 
+const calculateOrderTotal = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const orders = await prisma.order.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+      include: {
+        orderItems: true,
+      },
+    });
+
+    const total = orders.orderItems.reduce(
+      (acc, order) => parseInt(order.price) + parseInt(acc),
+      0
+    );
+
+    return res.json(total);
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   getAllOrders,
   deleteOrderById,
@@ -115,4 +138,5 @@ module.exports = {
   createOrder,
   getOrderById,
   addOrderItems,
+  calculateOrderTotal,
 };

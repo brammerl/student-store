@@ -20,4 +20,7 @@ router.post("/", orderController.createOrder);
 // Create new order items for a specific order
 router.post("/:id/items", orderController.addOrderItems);
 
+// Calculate and return order total
+router.get("/:id/total", orderController.calculateOrderTotal);
+
 module.exports = router;
