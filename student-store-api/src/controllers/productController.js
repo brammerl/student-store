@@ -1,5 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+const prisma = require("../db/db.js");
 const { createFilterAndSortObj } = require("../helpers/helpers.js");
 
 const getProducts = async (req, res) => {
