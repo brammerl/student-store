@@ -14,9 +14,28 @@ const getAllOrders = async (req, res, next) => {
   }
 };
 
-const deleteOrderById = async (req, res, next) => {
-  const { id } = req.params;
+const getOrderById = async (req, res, next) => {
   try {
+    const { id } = req.params;
+    const order = await prisma.order.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+      include: {
+        orderItems: true,
+      },
+    });
+
+    res.json(order);
+  } catch (e) {
+    next(e);
+  }
+};
+
+const deleteOrderById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
     const deletedOrder = await prisma.order.delete({
       where: { id: parseInt(id) },
     });
@@ -76,4 +95,5 @@ module.exports = {
   deleteOrderById,
   updateOrderById,
   createOrder,
+  getOrderById,
 };
