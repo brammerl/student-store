@@ -4,5 +4,10 @@ const orderItemController = require("../controllers/orderItemController");
 
 router.get("/", orderItemController.getAllOrderItems);
 
-router.delete("/:id", orderItemController.deleteOrderById);
+router.get("/:id", orderItemController.getOrderItemById);
+
+router.put("/:id", orderItemController.updateOrderItemById);
+
+router.post("/:id", orderItemController.createOrderItem);
+
 module.exports = router;

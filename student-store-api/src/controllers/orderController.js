@@ -47,9 +47,9 @@ const deleteOrderById = async (req, res, next) => {
 };
 
 const updateOrderById = async (req, res, next) => {
-  const { id } = req.params;
-
   try {
+    const { id } = req.params;
+
     const fetchedOrder = await prisma.order.findUnique({
       where: {
         id: parseInt(id),
