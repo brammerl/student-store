@@ -90,10 +90,29 @@ const createOrder = async (req, res, next) => {
   }
 };
 
+const addOrderItems = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { data } = req.body;
+
+    const createdOrderItems = await prisma.orderItem.createMany({
+      data: {
+        orderId: parseInt(id),
+        ...data,
+      },
+    });
+
+    res.json(createdOrderItems);
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   getAllOrders,
   deleteOrderById,
   updateOrderById,
   createOrder,
   getOrderById,
+  addOrderItems,
 };

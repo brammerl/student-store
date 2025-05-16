@@ -17,4 +17,7 @@ router.put(":/id", orderController.updateOrderById);
 // Create order - generic creates one or multiple
 router.post("/", orderController.createOrder);
 
+// Create new order items for a specific order
+router.post("/:id/items", orderController.addOrderItems);
+
 module.exports = router;
