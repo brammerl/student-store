@@ -3,9 +3,6 @@ const app = express();
 const PORT = 3000;
 const product = require("./routes/product.js");
 const { Prisma } = require("@prisma/client");
-const {
-  PrismaClientValidationError,
-} = require("@prisma/client/runtime/library");
 
 app.use(express.json());
 
