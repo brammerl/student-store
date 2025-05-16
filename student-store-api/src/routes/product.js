@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const productController = require("../controllers/productController.js");
 
-// Get all product
+// Get all products, filter logic applied if provided
 router.get("/", productController.getProducts);
 
 // Delete product by id
