@@ -1,4 +1,7 @@
 export const createFilterAndSortObj = (queryParams) => {
+  if (Object.keys(queryParams) == 0) {
+    return {};
+  }
   const { category, sort } = queryParams;
 
   const filters = {};

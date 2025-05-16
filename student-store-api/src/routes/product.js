@@ -8,15 +8,11 @@ const { createFilterAndSortObj } = require("../helpers/helpers.js");
 router.get("/", async (req, res) => {
   const queryParams = req.query;
 
-  if (Object.keys(queryParams) !== 0) {
-    const filters = createFilterAndSortObj(queryParams);
+  const filters = createFilterAndSortObj(queryParams);
 
-    const filteredProducts = await prisma.product.findMany(filters);
-
-    return res.json(filteredProducts);
-  }
-
-  const products = await prisma.product.findMany();
+  const products = await prisma.product.findMany({
+    ...filters,
+  });
 
   res.json(products);
 });
