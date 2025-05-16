@@ -6,4 +6,17 @@ const getAllOrders = async (req, res) => {
   return res.json(orders);
 };
 
-module.exports = { getAllOrders };
+const deleteOrderById = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const deletedOrder = await prisma.order.delete({
+      where: { id: parseInt(id) },
+    });
+
+    res.json(deletedOrder);
+  } catch (e) {
+    next(e);
+  }
+};
+
+module.exports = { getAllOrders, deleteOrderById };
