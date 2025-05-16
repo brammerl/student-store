@@ -19,7 +19,7 @@ model Product {
 model Order {
   id  Int @id @default(autoincrement())
   customer Int
-  total Decimal
+  total_price Decimal
   status String
   created_at DateTime
 }
