@@ -3,11 +3,13 @@ const app = express();
 const PORT = 3000;
 const product = require("./routes/product.js");
 const order = require("./routes/order.js");
+const orderItem = require("./routes/orderItem.js");
 const { Prisma } = require("@prisma/client");
 
 app.use(express.json());
 app.use("/product", product);
 app.use("/order", order);
+app.use("/orderItem", orderItem);
 
 app.use((err, req, res, next) => {
   if (err instanceof Prisma.PrismaClientValidationError) {
