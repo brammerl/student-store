@@ -5,6 +5,9 @@ const orderController = require("../controllers/orderController");
 // Get all orders
 router.get("/", orderController.getAllOrders);
 
+// Get order by id
+router.get("/:id", orderController.getOrderById);
+
 // Delete order by id
 router.delete("/:id", orderController.deleteOrderById);
 
