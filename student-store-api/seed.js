@@ -44,13 +44,13 @@ async function seed() {
           total_price: order.total_price,
           status: order.status,
           created_at: new Date(order.created_at),
-          // orderItems: {
-          //   create: order.items.map((item) => ({
-          //     productId: item.product_id,
-          //     quantity: item.quantity,
-          //     price: item.price,
-          //   })),
-          // },
+          orders: {
+            create: order.items.map((item) => ({
+              productId: item.product_id,
+              quantity: item.quantity,
+              price: item.price,
+            })),
+          },
         },
       });
 

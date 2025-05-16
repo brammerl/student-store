@@ -15,4 +15,17 @@ const getAllOrderItems = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllOrderItems };
+const deleteOrderById = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const deletedOrderItem = await prisma.orderItem.delete({
+      where: { id: parseInt(id) },
+    });
+
+    res.json(deletedOrderItem);
+  } catch (e) {
+    next(e);
+  }
+};
+
+const getOrderById = (module.exports = { getAllOrderItems, deleteOrderById });
