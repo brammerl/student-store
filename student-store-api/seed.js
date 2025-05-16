@@ -10,7 +10,7 @@ async function seed() {
     // Clear existing data (in order due to relations)
     // await prisma.orderItem.deleteMany();
     // await prisma.order.deleteMany();
-    // await prisma.product.deleteMany();
+    await prisma.product.deleteMany();
 
     // Load JSON data
     const productsData = JSON.parse(
