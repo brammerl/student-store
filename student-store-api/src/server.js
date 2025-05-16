@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const PORT = 3000;
 const product = require("./routes/product.js");
 const order = require("./routes/order.js");
@@ -10,6 +11,8 @@ app.use(express.json());
 app.use("/product", product);
 app.use("/order", order);
 app.use("/orderItem", orderItem);
+
+app.use(cors());
 
 app.use((err, req, res, next) => {
   if (err instanceof Prisma.PrismaClientValidationError) {
