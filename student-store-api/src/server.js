@@ -6,6 +6,8 @@ const order = require("./routes/order.js");
 const { Prisma } = require("@prisma/client");
 
 app.use(express.json());
+app.use("/product", product);
+app.use("/order", order);
 
 app.use((err, req, res, next) => {
   if (err instanceof Prisma.PrismaClientValidationError) {
@@ -17,14 +19,16 @@ app.use((err, req, res, next) => {
         .status(400)
         .json({ error: "A unique constraint violation occurred." });
     }
+    if (err.code === "P2025") {
+      return res.status(400).json({ error: "Record not found" });
+    }
   }
 
   res.status(500).json({ error: "Internal Server Error" });
 });
 
-app.use("/product", product);
-app.use("/order", order);
-
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+module.exports = app;
