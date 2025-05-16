@@ -23,4 +23,53 @@ const deleteOrderById = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllOrders, deleteOrderById };
+const updateOrderById = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const fetchedOrder = await prisma.order.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+
+    const { data } = req.body;
+
+    const updatedOrder = await prisma.order.update({
+      where: { id: parseInt(id) },
+      data: {
+        ...fetchedOrder,
+        ...data,
+      },
+    });
+
+    res.json(updatedOrder);
+  } catch (e) {
+    next(e);
+  }
+};
+
+const createOrder = async (req, res, next) => {
+  try {
+    const { data } = req.body;
+
+    if (!data.length) {
+      return res.status(400).json({ error: "No orders provided" });
+    }
+
+    const ordersCreated = await prisma.order.createManyAndReturn({
+      data,
+    });
+
+    res.json(ordersCreated);
+  } catch (e) {
+    next(e);
+  }
+};
+
+module.exports = {
+  getAllOrders,
+  deleteOrderById,
+  updateOrderById,
+  createOrder,
+};
