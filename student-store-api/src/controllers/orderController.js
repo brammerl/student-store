@@ -1,9 +1,13 @@
 const prisma = require("../db/db.js");
 
-const getAllOrders = async (req, res) => {
-  const orders = await prisma.order.findMany();
+const getAllOrders = async (req, res, next) => {
+  try {
+    const orders = await prisma.order.findMany();
 
-  return res.json(orders);
+    return res.json(orders);
+  } catch (e) {
+    next(e);
+  }
 };
 
 const deleteOrderById = async (req, res, next) => {
